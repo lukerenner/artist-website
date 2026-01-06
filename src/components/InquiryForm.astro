@@ -1,0 +1,98 @@
+---
+import { siteConfig } from '../config';
+import { getCollection } from 'astro:content';
+
+const paintings = await getCollection('paintings');
+const sortedPaintings = paintings.sort((a, b) => a.data.order - b.data.order);
+
+export interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<form 
+  action={siteConfig.formspreeInquiryEndpoint}
+  method="POST"
+  class={`inquiry-form ${className}`}
+  id="inquiry-form"
+>
+  <!-- Honeypot field for spam protection -->
+  <div class="honeypot" aria-hidden="true">
+    <label for="website-inquiry">Website</label>
+    <input type="text" id="website-inquiry" name="_gotcha" tabindex="-1" autocomplete="off" />
+  </div>
+  
+  <div class="form-group">
+    <label for="inquiry-name">Name *</label>
+    <input 
+      type="text" 
+      id="inquiry-name" 
+      name="name" 
+      required 
+      aria-required="true"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="inquiry-email">Email *</label>
+    <input 
+      type="email" 
+      id="inquiry-email" 
+      name="email" 
+      required 
+      aria-required="true"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="inquiry-phone">Phone (optional)</label>
+    <input 
+      type="tel" 
+      id="inquiry-phone" 
+      name="phone"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="painting">Painting *</label>
+    <select 
+      id="painting" 
+      name="painting" 
+      required 
+      aria-required="true"
+    >
+      <option value="">Select a painting...</option>
+      {sortedPaintings.map((painting) => (
+        <option value={painting.data.title}>
+          {painting.data.title} - {painting.data.price}
+        </option>
+      ))}
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="inquiry-message">Message *</label>
+    <textarea 
+      id="inquiry-message" 
+      name="message" 
+      required 
+      aria-required="true"
+    ></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">
+    Send Inquiry
+  </button>
+</form>
+
+<style>
+  .inquiry-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+</style>

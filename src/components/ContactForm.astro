@@ -1,0 +1,64 @@
+---
+import { siteConfig } from '../config';
+
+export interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<form 
+  action={siteConfig.formspreeContactEndpoint}
+  method="POST"
+  class={`contact-form ${className}`}
+>
+  <!-- Honeypot field for spam protection -->
+  <div class="honeypot" aria-hidden="true">
+    <label for="website">Website</label>
+    <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
+  </div>
+  
+  <div class="form-group">
+    <label for="name">Name *</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      required 
+      aria-required="true"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="email">Email *</label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      required 
+      aria-required="true"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="message">Message *</label>
+    <textarea 
+      id="message" 
+      name="message" 
+      required 
+      aria-required="true"
+    ></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">
+    Send Message
+  </button>
+</form>
+
+<style>
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>

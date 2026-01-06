@@ -1,0 +1,10 @@
+{
+    "title": "Born Crazy",
+    "slug": "born-crazy",
+    "coverImage": "/images/books/born-crazy.webp",
+    "blurb": "A memoir of resilience and self-discovery",
+    "description": "Born Crazy is a powerful memoir that explores the journey of self-discovery, resilience, and the courage to embrace one's authentic self. Through vivid storytelling and raw honesty, Bonnie Bostrom shares her experiences navigating life's challenges with grace and determination.",
+    "buyUrl": "https://buy.stripe.com/test_placeholder",
+    "order": 1,
+    "featured": true
+}

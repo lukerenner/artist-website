@@ -1,0 +1,192 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/books', label: 'Published Works' },
+  { href: '/canvas-art-for-sale', label: 'Canvas Art for Sale' },
+  { href: '/about', label: "Artist's Statement" },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<nav class="main-nav">
+  <div class="container">
+    <div class="nav-wrapper">
+      <a href="/" class="nav-logo">
+        <span class="logo-text">Bonnie Bostrom</span>
+      </a>
+      
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+      
+      <ul class="nav-menu">
+        {navItems.map(({ href, label }) => (
+          <li class="nav-item">
+            <a 
+              href={href} 
+              class:list={['nav-link', { active: currentPath === href }]}
+              aria-current={currentPath === href ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .main-nav {
+    background-color: #40e0d0;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-logo {
+    font-family: 'Halant', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #662b5c;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-logo:hover {
+    color: #fff;
+  }
+  
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .hamburger {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #fff;
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .hamburger::before {
+    top: -8px;
+  }
+  
+  .hamburger::after {
+    bottom: -8px;
+  }
+  
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    color: #662b5c;
+    font-size: 1.05rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: block;
+    }
+    
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background-color: #000;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 2rem 0;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .nav-menu.active {
+      transform: translateX(0);
+    }
+    
+    .nav-item {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .nav-link {
+      display: block;
+      color: #fff;
+      font-size: 1.375rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 1rem;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+      color: #40e0d0;
+    }
+  }
+</style>
+
+<script>
+  // Mobile navigation toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!isExpanded));
+      navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking a link
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

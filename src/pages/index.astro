@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../config';
+
+// Get books and paintings
+const allBooks = await getCollection('books');
+const sortedBooks = allBooks.sort((a, b) => a.data.order - b.data.order);
+const featuredBook = sortedBooks.find(book => book.data.featured);
+
+const allPaintings = await getCollection('paintings');
+const featuredPainting = allPaintings[0]; // Just show first painting as preview
+---
+
+<BaseLayout>
+  <Nav />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-image">
+        <img 
+          src="/images/hero/bonnie-hero.webp" 
+          alt="Bonnie Bostrom" 
+          loading="eager"
+        />
+      </div>
+      <div class="hero-content container">
+        <h1>Bonnie Bostrom</h1>
+        <p class="hero-intro">
+          Painter, Poet, and Author exploring the intersections of art, language, and the human experience.
+        </p>
+      </div>
+    </section>
+
+    <!-- Books Section -->
+    <section class="section books-section">
+      <div class="container">
+        <h2 class="section-title">Books By Bonnie</h2>
+        <div class="grid grid-3">
+          {sortedBooks.map((book) => (
+            <div class="card">
+              <img 
+                src={book.data.coverImage} 
+                alt={book.data.title}
+                class="card-image"
+                loading="lazy"
+              />
+              <div class="card-content">
+                <h3 class="card-title">{book.data.title}</h3>
+                <p>{book.data.blurb}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Memoir Section -->
+    {featuredBook && (
+      <section class="section featured-section">
+        <div class="container">
+          <div class="featured-content">
+            <div class="featured-image">
+              <img 
+                src={featuredBook.data.coverImage} 
+                alt={featuredBook.data.title}
+                loading="lazy"
+              />
+            </div>
+            <div class="featured-text">
+              <h2>Featured Memoir</h2>
+              <h3>{featuredBook.data.title}</h3>
+              <p>{featuredBook.data.description}</p>
+              {featuredBook.data.buyUrl && (
+                <a 
+                  href={featuredBook.data.buyUrl} 
+                  class="btn btn-primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Buy Now for $25
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Paintings Preview Section -->
+    {featuredPainting && (
+      <section class="section paintings-preview">
+        <div class="container">
+          <h2 class="section-title">Paintings</h2>
+          <div class="paintings-content">
+            <img 
+              src={featuredPainting.data.image} 
+              alt={featuredPainting.data.title}
+              loading="lazy"
+            />
+            <a href="/canvas-art-for-sale" class="btn btn-secondary">
+              EXPLORE ALL PAINTINGS
+            </a>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Contact Section -->
+    <section class="section contact-section">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <ContactForm />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+  }
+  
+  .hero-content {
+    padding: 4rem 1.5rem;
+  }
+  
+  .hero h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-intro {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .featured-section {
+    background-color: #f9f9f9;
+  }
+  
+  .featured-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .featured-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .featured-text h2 {
+    color: #662b5c;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .featured-text h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .featured-text p {
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  
+  .paintings-content {
+    text-align: center;
+  }
+  
+  .paintings-content img {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-section {
+    background-color: #f5f5f5;
+  }
+  
+  @media (max-width: 768px) {
+    .featured-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero {
+      min-height: 400px;
+    }
+  }
+</style>
