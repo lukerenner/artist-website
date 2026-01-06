@@ -21,10 +21,8 @@ const paintingsCollection = defineCollection({
         slug: z.string(),
         image: z.string(),
         medium: z.string(),
-        size: z.string(),
-        price: z.string(),
+        dimensions: z.string(),
         description: z.string(),
-        available: z.boolean(),
         order: z.number(),
     }),
 });
