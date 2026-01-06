@@ -3,9 +3,7 @@
     "slug": "duet",
     "image": "/images/paintings/duet.jpg",
     "medium": "Acrylic on canvas",
-    "size": "24x36 inches",
-    "price": "$500",
+    "dimensions": "24\" x 36\"",
     "description": "A harmonious composition exploring the interplay of light and shadow, color and form. This piece captures the essence of partnership and balance.",
-    "available": true,
     "order": 1
 }
