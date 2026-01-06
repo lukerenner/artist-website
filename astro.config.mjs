@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Use environment variable for site URL, defaulting to production
-const site = process.env.SITE_URL || 'https://bonniebostrom.com';
+// Use environment variable for site URL, defaulting to staging
+const site = process.env.SITE_URL || 'https://bonnie.lukerenner.co';
 
 // https://astro.build/config
 export default defineConfig({

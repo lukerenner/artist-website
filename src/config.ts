@@ -4,7 +4,7 @@ export const siteConfig = {
     description: "Official website of Bonnie Bostrom - Painter, Poet, and Author",
 
     // Domain configuration (use environment variable for staging vs production)
-    url: process.env.SITE_URL || "https://bonniebostrom.com",
+    url: process.env.SITE_URL || "https://bonnie.lukerenner.co",
 
     // Ecommerce (Stripe Payment Links - outbound only, no cart/checkout)
     // TODO: Replace with actual Stripe Payment Links
