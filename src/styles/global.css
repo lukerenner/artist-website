@@ -128,7 +128,7 @@ img {
 }
 
 .btn-primary:hover {
-  filter: brightness(0.5);
+  filter: brightness(0.75);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
 }
@@ -140,7 +140,7 @@ img {
 }
 
 .btn-secondary:hover {
-  filter: brightness(0.5);
+  filter: brightness(0.75);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
 }
