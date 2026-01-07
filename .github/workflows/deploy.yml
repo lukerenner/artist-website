@@ -33,7 +33,7 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          SITE_URL: ${{ secrets.SITE_URL || 'https://bonnie.lukerenner.co' }}
+          SITE_URL: 'https://bonniebostrom.com'
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
