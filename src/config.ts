@@ -14,4 +14,7 @@ export const siteConfig = {
     // TODO: Replace with actual Formspree endpoints after account setup
     formspreeContactEndpoint: "https://formspree.io/f/placeholder",
     formspreeInquiryEndpoint: "https://formspree.io/f/placeholder",
+
+    // PayPal Configuration
+    paypalClientId: "BAAvFKzEBmJIaK38TghxYqawdvyoIzVPd6Vzpyv-2qqH2rpXOl7WqBRpPLcP-kszLjn7-EpE1AMEjmwmSo",
 };

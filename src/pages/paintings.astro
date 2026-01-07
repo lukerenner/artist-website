@@ -78,7 +78,9 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
                   <h2>{painting.data.title}</h2>
                   <div class="painting-meta">
                      <p><strong>Medium:</strong> {painting.data.medium || "Acrylic on canvas"}</p>
-                     <p><strong>Dimensions:</strong> {painting.data.dimensions}</p>
+                     {painting.data.dimensions && painting.data.dimensions !== "Original" && (
+                       <p><strong>Dimensions:</strong> {painting.data.dimensions}</p>
+                     )}
                   </div>
                   <p class="description">{painting.data.description}</p>
                   <a href="#contact" class="btn btn-primary inquire-btn">Inquire About this Painting</a>

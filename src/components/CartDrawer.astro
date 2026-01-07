@@ -210,6 +210,7 @@ import products from '../data/products.json';
 
 <script>
   import { cart } from '../lib/cart';
+  import { siteConfig } from '../config';
 
   const drawer = document.getElementById('cart-drawer');
   const overlay = document.getElementById('cart-drawer-overlay');
@@ -239,7 +240,9 @@ import products from '../data/products.json';
   function loadPayPalSDK() {
     if (isPayPalLoaded) return;
     
-    const clientId = import.meta.env.PUBLIC_PAYPAL_CLIENT_ID || 'sb'; // Default to sandbox if missing
+    // Use configured Client ID, fallback to Sandbox if missing
+    // Note: In production, this should come from siteConfig or env
+    const clientId = siteConfig.paypalClientId || 'sb'; 
     
     // Check if script already exists
     if (document.querySelector('script[src*="paypal.com/sdk/js"]')) {

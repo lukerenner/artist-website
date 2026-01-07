@@ -21,7 +21,7 @@ const paintingsCollection = defineCollection({
         slug: z.string(),
         image: z.string(),
         medium: z.string(),
-        dimensions: z.string(),
+        dimensions: z.string().optional(),
         description: z.string(),
         order: z.number(),
     }),
