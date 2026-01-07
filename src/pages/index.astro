@@ -7,7 +7,21 @@ import { siteConfig } from '../config';
 
 // Get books and paintings
 const allBooks = await getCollection('books');
-const sortedBooks = allBooks.sort((a, b) => a.data.order - b.data.order);
+
+// Custom sort order
+const prioritySlugs = ['born-crazy', 'the-witnesses-project', 'ecstasy', 'illumination'];
+
+const sortedBooks = allBooks.sort((a, b) => {
+  const indexA = prioritySlugs.indexOf(a.slug);
+  const indexB = prioritySlugs.indexOf(b.slug);
+
+  if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+  if (indexA !== -1) return -1;
+  if (indexB !== -1) return 1;
+
+  return a.data.order - b.data.order;
+});
+
 const featuredBook = sortedBooks.find(book => book.data.featured);
 
 const allPaintings = await getCollection('paintings');
@@ -45,18 +59,20 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
         <h2 class="section-title">Books By Bonnie</h2>
         <div class="grid grid-3">
           {sortedBooks.map((book) => (
-            <div class="card">
-              <img 
-                src={book.data.coverImage} 
-                alt={book.data.title}
-                class="card-image"
-                loading="lazy"
-              />
-              <div class="card-content">
-                <h3 class="card-title">{book.data.title}</h3>
-                <p>{book.data.blurb}</p>
+            <a href={`/books#${book.slug}`} class="card-link">
+              <div class="card">
+                <img 
+                  src={book.data.coverImage} 
+                  alt={book.data.title}
+                  class="card-image"
+                  loading="lazy"
+                />
+                <div class="card-content">
+                  <h3 class="card-title">{book.data.title}</h3>
+                  <p>{book.data.blurb}</p>
+                </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -301,6 +317,22 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+  
+  .card-link:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .card {
+    height: 100%; /* Ensure card takes full height of link anchor */
   }
   
   .featured-section-alt .featured-content {
