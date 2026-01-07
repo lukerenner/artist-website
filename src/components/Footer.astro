@@ -1,26 +1,49 @@
 ---
-const currentYear = new Date().getFullYear();
+// Footer component with contact section and copyright
 ---
 
-<footer class="main-footer">
-  <div class="container">
-    <p class="copyright">
-      &copy; {currentYear} Bonnie Bostrom. All rights reserved.
-    </p>
+<footer class="main-footer" data-astro-cid-sz7xmlte>
+  <div class="footer-quote" data-astro-cid-sz7xmlte>
+    <div class="container" data-astro-cid-sz7xmlte>
+      <p data-astro-cid-sz7xmlte>
+        We create for others so they can share what is really a very personal missive to ourselves. The events in our lives are unique and those that cause hunger, pain, grief, and suffering bind us. Beauty, love, and compassion, however, are even stronger bonds.
+      </p>
+    </div>
+  </div>
+  <div class="copyright" data-astro-cid-sz7xmlte>
+    <p data-astro-cid-sz7xmlte>Copyright © 2019 Bonnie Bostrom | All rights reserved.</p>
   </div>
 </footer>
 
 <style>
-  .main-footer {
-    background-color: #f5f5f5;
-    padding: 2rem 0;
-    margin-top: 4rem;
-    border-top: 1px solid #e0e0e0;
+  .main-footer[data-astro-cid-sz7xmlte] {
+    background-color: #000;
+    color: #fff;
+    margin-top: 0;
+    border-top: none;
   }
   
-  .copyright {
+  .footer-quote[data-astro-cid-sz7xmlte] {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid #333;
+  }
+  
+  .footer-quote[data-astro-cid-sz7xmlte] p[data-astro-cid-sz7xmlte] {
     text-align: center;
-    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+  
+  .copyright[data-astro-cid-sz7xmlte] {
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+  
+  .copyright[data-astro-cid-sz7xmlte] p[data-astro-cid-sz7xmlte] {
+    color: #999;
     font-size: 0.9rem;
     margin: 0;
   }
