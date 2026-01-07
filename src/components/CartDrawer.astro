@@ -36,11 +36,12 @@ import products from '../data/products.json';
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(40, 34, 46, 0.6); /* Using primary dark brand color with opacity */
     z-index: 998;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
   }
 
   .drawer-overlay.open {
@@ -56,11 +57,12 @@ import products from '../data/products.json';
     max-width: 400px;
     height: 100%;
     background: white;
-    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    box-shadow: -4px 0 16px rgba(0,0,0,0.15);
     z-index: 999;
-    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
+    font-family: 'Nunito Sans', sans-serif;
   }
 
   .cart-drawer.open {
@@ -69,16 +71,18 @@ import products from '../data/products.json';
 
   .drawer-header {
     padding: 1.5rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #f0f0f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f9f9f9;
+    background: #fff;
   }
 
   .drawer-header h2 {
     margin: 0;
-    font-size: 1.25rem;
+    font-family: 'Halant', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
     color: #662b5c;
   }
 
@@ -88,11 +92,14 @@ import products from '../data/products.json';
     font-size: 2rem;
     line-height: 1;
     cursor: pointer;
-    color: #999;
+    color: #40e0d0; /* Teal brand color */
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 0;
   }
 
   .close-btn:hover {
-    color: #333;
+    color: #662b5c; /* Purple interaction */
+    transform: rotate(90deg);
   }
 
   .drawer-content {
@@ -103,8 +110,16 @@ import products from '../data/products.json';
   }
 
   .cart-items {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     flex: 1;
+  }
+  
+  .empty-msg {
+    text-align: center;
+    color: #666;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    font-style: italic;
   }
 
   .cart-item {
@@ -119,59 +134,81 @@ import products from '../data/products.json';
   }
 
   .item-name {
-    font-weight: 600;
+    font-family: 'Halant', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
     margin-bottom: 0.25rem;
     display: block;
     color: #333;
+    line-height: 1.3;
   }
 
   .item-price {
     color: #666;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.5rem;
   }
 
   .item-controls {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
   }
 
   .qty-btn {
-    background: #eee;
-    border: none;
-    width: 24px;
-    height: 24px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    width: 28px;
+    height: 28px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
+    color: #666;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
   }
   
   .qty-btn:hover {
-    background: #ddd;
+    border-color: #40e0d0;
+    color: #40e0d0;
   }
 
   .qty-val {
-    font-size: 0.9rem;
-    min-width: 20px;
+    font-size: 1rem;
+    min-width: 24px;
     text-align: center;
+    font-weight: 600;
   }
 
   .remove-btn {
     background: none;
     border: none;
-    color: #e74c3c;
-    font-size: 0.8rem;
+    color: #999;
+    font-size: 0.85rem;
     margin-left: auto;
     cursor: pointer;
     text-decoration: underline;
+    transition: color 0.3s ease;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+  
+  .remove-btn:hover {
+    color: #e74c3c;
+  }
+  
+  .item-total {
+    font-weight: 700;
+    margin-left: 1rem;
+    color: #662b5c;
+    font-size: 1.1rem;
   }
 
   .cart-footer {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     background: #f9f9f9;
     border-top: 1px solid #eee;
   }
@@ -179,16 +216,22 @@ import products from '../data/products.json';
   .subtotal {
     display: flex;
     justify-content: space-between;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
+    font-family: 'Halant', serif;
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: #333;
+    letter-spacing: 0.5px;
+  }
+  
+  .subtotal span:last-child {
+    color: #40e0d0; /* Teal for price */
   }
 
   .payment-message {
     margin-top: 1rem;
     font-size: 0.9rem;
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 4px;
     text-align: center;
   }
@@ -196,11 +239,13 @@ import products from '../data/products.json';
   .payment-message.success {
     background-color: #d4edda;
     color: #155724;
+    border: 1px solid #c3e6cb;
   }
   
   .payment-message.error {
     background-color: #f8d7da;
     color: #721c24;
+    border: 1px solid #f5c6cb;
   }
   
   .hidden {
