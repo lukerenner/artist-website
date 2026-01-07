@@ -2,65 +2,287 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+
+const pageTitle = "About Bonnie Bostrom | Artist Statement";
 ---
 
-<BaseLayout title="Artist's Statement - Bonnie Bostrom" description="Artist's Statement and Biography of Bonnie Bostrom.">
+<BaseLayout title={pageTitle} description="Artist statement and biography of Bonnie Bostrom.">
   <Nav />
   
   <main>
-    <section class="about-section">
-      <div class="container">
-        <h1>Artist's Statement</h1>
-        
-        <div class="about-content">
-          <div class="about-image">
-            <img 
-              src="/images/bio-bonnie.jpg" 
-              alt="Bonnie Bostrom" 
-              loading="eager"
-            />
-            <p class="photo-credit">Photo by Larissa Herbert</p>
+    <!-- 1. Header with Background Image -->
+    <header class="about-header">
+      <div class="header-bg">
+        <img src="/images/about/about-hero.webp" alt="Background" loading="eager" />
+      </div>
+    </header>
+
+    <!-- 2-5: Initial Grid Section -->
+    <section class="section about-intro">
+      <div class="container container-wide">
+        <div class="intro-grid">
+          <!-- Left Column -->
+          <div class="intro-col-left">
+             <div class="intro-text-block">
+                <h1>Many times I have been encouraged to choose one particular avenue of creativity and concentrate my efforts there.</h1>
+             </div>
+             <div class="intro-image-1">
+               <img src="/images/about/bonnie-portrait-1.webp" alt="Bonnie Bostrom Portrait 1" />
+             </div>
           </div>
           
-          <div class="about-text">
-            <p>
-              Many times I have been encouraged to choose one particular avenue of creativity and concentrate my efforts there. The thinking behind that is mastery requires singular focus.
-            </p>
-            <p>
-              That didn't work for me.
-            </p>
-            <p>
-              I am not torn between writing, composing, and painting. I find that I need several outlets. I have written a lot of songs and love performing them. The guitar was so much fun, I decided to try my hand at the piano and love it. If I get bored with writing, I play the piano or write a song.
-            </p>
-            <p>
-              I thought painting was a terrible idea since I had tried oil painting at one time and it was a disaster. I had created a canvas of oil mud. But exploring acrylics opened a new world of color and expression for me.
-            </p>
-            <blockquote class="pull-quote">
-              "We create for others so they can share what is really a very personal missive to ourselves."
-            </blockquote>
+          <!-- Right Column -->
+          <div class="intro-col-right">
+            <div class="intro-image-2">
+               <img src="/images/about/bonnie-portrait-2.webp" alt="Bonnie Bostrom Portrait 2" />
+            </div>
+            <div class="intro-text-block right-aligned">
+               <h1>The thinking behind that advice was that I needed to devote myself to one endeavor so that I might become successful.</h1>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
 
+    <!-- 6. "That didn't work for me" Section -->
+    <section class="section statement-break">
+      <div class="break-bg">
+         <img src="/images/about/green-wash-bg.webp" alt="Green Wash Background" />
+      </div>
+      <div class="break-content container">
+        <h1 class="all-caps-centered">
+          THAT<br/>
+          DIDN'T<br/>
+          WORK<br/>
+          FOR ME.
+        </h1>
+      </div>
+    </section>
+
+    <!-- 7-9. Writer Section -->
+    <section class="section writer-section">
+      <div class="container container-narrow">
+        <p class="lead-text">I am not torn between writing, composing, and painting. I find that I need several outlets.</p>
+        
+        <h2 class="subhead">I have always been a writer.</h2>
+        
+        <div class="text-content">
+          <p>As soon as I learned cursive, I found I could write down my ideas quickly (printing is laborious) and loved writing poems. I also wrote little stories and created my own fairy tales. I have continued doing that my whole life.</p>
+          <p>Some of the poems I wrote were like songs so when I was thirty I started to play the guitar and set my poems to music.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. BorderNoMargin Image -->
+    <div class="full-width-image">
+       <img src="/images/about/piano-strip.webp" alt="Bonnie at Piano" />
+    </div>
+
+    <!-- 11-12. Music Section -->
+    <section class="section music-section">
+       <div class="container container-narrow">
+         <h2 class="subhead">I have written a lot of songs and love performing them.</h2>
+         
+         <div class="text-content">
+            <p>The guitar was so much fun, I decided to try my hand at the piano and love it. If I get bored with writing, I play the piano or write a song.</p>
+            <p>A friend, the musician <a href="https://example.com" target="_blank">3 HAND STEPHEN</a>, has recorded his arrangement of one of my songs, Atomic Clock, and I am writing more lyrics for him.</p>
+            <p>Ten years ago, my sister, Jeanne Collins, suggested I try painting.</p>
+         </div>
+       </div>
+    </section>
+
+    <!-- 13. "Terrible Idea" Section (Reuse Design of Section 6) -->
+    <section class="section statement-break">
+      <div class="break-bg">
+         <img src="/images/about/green-wash-bg.webp" alt="Green Wash Background" />
+      </div>
+      <div class="break-content container">
+        <h1 class="mid-caps-centered">
+          I thought it was a terrible idea since I had tried oil painting at one time and it was a disaster. I had created a canvas of oil mud.
+        </h1>
+      </div>
+    </section>
+    
+    <!-- 14. Painting Section -->
+    <section class="section painting-text-section">
+      <div class="container container-narrow">
+        <div class="text-content">
+           <p>I could not stand waiting around for it to dry before I could continue.</p>
+           <p>She suggested acrylics and took me to her studio to try it out. I loved it. I've been mad for painting since then and have finished literally hundreds of paintings.</p>
+           <p>Thank goodness people like and buy them or I would run out of space!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. Final 2 Column Section -->
+    <section class="section closing-section">
+      <div class="container">
+        <div class="closing-grid">
+           <!-- Column 1 -->
+           <div class="closing-col-left">
+              <img src="/images/about/bonnie-portrait-3.webp" alt="Bonnie Portrait 3" />
+           </div>
+           
+           <!-- Column 2 -->
+           <div class="closing-col-right">
+              <h2>So I will continue with all my various pursuits because they make me happy.</h2>
+              <p>Creating something that has never existed before is a great thrill to me, whether it is a book, a song, or a painting.</p>
+              <p>I like to share what I have made in the hope that you will enjoy seeing the results of my creative process and that it will inspire you to create as well.</p>
+              <p>And of course I would love to have you purchase a book or a painting!</p>
+              
+              <div class="signature-block">
+                 <img src="/images/about/signature.webp" alt="Bonnie Bostrom Signature" />
+              </div>
+           </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  
   <Footer />
 </BaseLayout>
 
 <style>
-  .about-section {
+  /* 1. Header */
+  .about-header {
+    height: 400px; /* Adjust as needed */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .header-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Shared Container Widths */
+  .container-wide {
+    max-width: 1200px;
+  }
+  
+  .container-narrow {
+    max-width: 800px;
+  }
+
+  /* 2-5 Intro Grid */
+  .about-intro {
     padding: 4rem 0;
-    min-height: 80vh;
   }
   
-  h1 {
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  
+  .intro-text-block h1 {
+    font-size: 2rem;
+    line-height: 1.4;
+    color: #662b5c; /* Using site brand color */
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  
+  .right-aligned {
+    text-align: right;
+    margin-top: 2rem;
+  }
+  
+  .intro-image-1 img, 
+  .intro-image-2 img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  /* 6 & 13 Break Sections */
+  .statement-break {
+    position: relative;
+    padding: 6rem 1rem;
     text-align: center;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 4rem;
-    color: #662b5c;
+    color: #fff;
+    overflow: hidden;
   }
   
-  .about-content {
+  .break-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .break-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* opacity: 0.9; Optional if image needs darkening */ 
+  }
+  
+  .all-caps-centered {
+    font-size: clamp(3rem, 6vw, 5rem);
+    text-transform: uppercase;
+    font-weight: 800;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .mid-caps-centered {
+     font-size: clamp(1.5rem, 3vw, 2.5rem);
+     font-weight: 600;
+     line-height: 1.4;
+     max-width: 900px;
+     margin: 0 auto;
+     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  /* Text Sections */
+  .lead-text {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .subhead {
+    font-size: 2rem;
+    color: #662b5c;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+  }
+  
+  .text-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #444;
+  }
+  
+  /* 10 Full Width Image */
+  .full-width-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* 15 Closing Section */
+  .closing-section {
+    padding-bottom: 6rem;
+  }
+  
+  .closing-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -69,52 +291,55 @@ import Footer from '../components/Footer.astro';
     margin: 0 auto;
   }
   
-  .about-image {
-    position: relative;
-  }
-  
-  .about-image img {
+  .closing-col-left img {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   
-  .photo-credit {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: #666;
-    font-style: italic;
-    text-align: right;
-  }
-  
-  .about-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #333;
-  }
-  
-  .about-text p {
+  .closing-col-right h2 {
+    color: #662b5c;
+    font-size: 2rem;
+    line-height: 1.3;
     margin-bottom: 1.5rem;
   }
   
-  .pull-quote {
-    font-family: 'Halant', serif;
-    font-size: 1.5rem;
-    font-style: italic;
-    color: #40e0d0;
-    border-left: 4px solid #662b5c;
-    padding-left: 1.5rem;
-    margin: 2rem 0;
+  .closing-col-right p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #444;
   }
   
+  .signature-block {
+    margin-top: 2rem;
+    width: 60%; 
+  }
+  
+  .signature-block img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
-    .about-content {
+    .intro-grid, 
+    .closing-grid {
       grid-template-columns: 1fr;
+      gap: 2rem;
     }
     
-    .about-image {
-      max-width: 500px;
-      margin: 0 auto;
+    .right-aligned {
+      text-align: left;
     }
+    
+    .about-header {
+      height: 300px;
+    }
+    
+    .intro-col-left, .intro-col-right {
+        display: flex;
+        flex-direction: column;
+    }
+    /* Reorder mobile if needed, though default stacking usually OK */
   }
 </style>
