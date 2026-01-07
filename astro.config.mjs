@@ -12,5 +12,8 @@ export default defineConfig({
     build: {
         assets: 'assets'
     },
-    integrations: [sitemap()]
+    integrations: [sitemap()],
+    redirects: {
+        '/canvas-art-for-sale': '/paintings'
+    }
 });
