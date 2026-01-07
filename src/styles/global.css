@@ -128,7 +128,7 @@ img {
 }
 
 .btn-primary:hover {
-  background-color: #2ab3a5;
+  filter: brightness(0.5);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
 }
@@ -140,9 +140,7 @@ img {
 }
 
 .btn-secondary:hover {
-  background-color: #f0f0f0;
-  border-color: #2ab3a5;
-  color: #2ab3a5;
+  filter: brightness(0.5);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
 }
