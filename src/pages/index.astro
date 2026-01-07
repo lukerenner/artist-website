@@ -33,6 +33,10 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
         <p class="hero-intro">
           Bonnie has been writing poetry and creating art since she was a little girl. Her published works include poetry collections, fine art criticism and memoir and have been published in several literary journals. Recently, she felt inspired to explore painting. She found that the ephemeral, celestial nature of her written work translated well into the visual medium.
         </p>
+        <div class="hero-buttons">
+          <a href="/books" class="btn btn-primary">Explore Books</a>
+          <a href="/canvas-art-for-sale" class="btn btn-secondary">Explore Paintings</a>
+        </div>
       </div>
     </section>
 
@@ -59,7 +63,7 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
       </div>
     </section>
 
-    <!-- Featured Memoir Section -->
+    <!-- Featured: Born Crazy -->
     {featuredBook && (
       <section class="section featured-section">
         <div class="container">
@@ -72,7 +76,7 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
               />
             </div>
             <div class="featured-text">
-              <h2>Featured Memoir</h2>
+              <h2>Bonnie's Latest</h2>
               <h3>{featuredBook.data.title}</h3>
               <p>{featuredBook.data.description}</p>
               {featuredBook.data.buyUrl && (
@@ -91,24 +95,43 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
       </section>
     )}
 
-    <!-- Paintings Preview Section -->
-    {featuredPainting && (
-      <section class="section paintings-preview">
-        <div class="container">
-          <h2 class="section-title">Paintings</h2>
-          <div class="paintings-content">
+    <!-- Featured: Illumination -->
+    <section class="section featured-section-alt">
+      <div class="container">
+        <div class="featured-content">
+          <div class="featured-image">
             <img 
-              src={featuredPainting.data.image} 
-              alt={featuredPainting.data.title}
+              src="/images/books/illumination.jpg" 
+              alt="Illumination: 3 Sci-Fi Romances"
               loading="lazy"
             />
-            <a href="/canvas-art-for-sale" class="btn btn-secondary">
-              EXPLORE ALL PAINTINGS
+          </div>
+          <div class="featured-text">
+            <h2>Bonnie's Latest</h2>
+            <h3>Illumination: 3 Sci-Fi Romances</h3>
+            <p>A woman meets her soulmate when an alien ship crash-lands on her ranch.</p>
+            <p>A dying mother recalls an encounter with a loving visitor from the stars.</p>
+            <p>In a future world where Sensory Collectors buy and sell emotion-enhancing hormones, true love can be difficult to recognize.</p>
+            <p>These are the settings for Bonnie Bostrom's brand of Science Fiction. Make that Romantic Science Fiction. Here, in "Illumination," the gentle touch speaks volumes when messages are transferred through thought; the understated life-long friendship with a mysterious red dot of light becomes a promise of hope in the beyond; and love ice skates across time, space, and realities to bring a couple together.</p>
+            <p>The author welcomes the reader through the front door and into these short stories with a warm hand and a smile. There is no need for over-explanation or obvious, didactic metaphor. Less is more, and one of Ms. Bostrom's gifts as an author is to create believable characters and settings seemingly effortlessly and with finesse.</p>
+            <p>In the story "Skuller," the heroine, Flyn, is described as a green-eyed woman with blue-black hair who is a natural empath. Her adventures take us into the realm of the speculative yet-to-be, but her character remains timeless—</p>
+            <p><em>"Flyn was grateful to her parents for her beauty, but she was more brain than beauty-proud. Beauty was, at best, static, and after a certain age, a regressive process, whereas thinking was progressive, expansive, and dynamic."</em></p>
+            <p>When my 14-year-old daughter read these Sci-fi tales of romance on a day off from school, she could be heard quietly sighing and laughing to herself on the sofa. When she finished, I asked for her thoughts. She gave a short, complimentary response that is, as parents of teens will know, the pinnacle of respect—</p>
+            <p><em>"They're really cool," she said.</em></p>
+            <p>I have to agree.</p>
+            <p><strong>—Henry Long</strong></p>
+            <a 
+              href="https://buy.stripe.com/test_placeholder" 
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy Now for $15
             </a>
           </div>
         </div>
-      </section>
-    )}
+      </div>
+    </section>
 
     <!-- Contact Section -->
     <section class="section contact-section">
@@ -125,13 +148,13 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
 <style>
   .hero {
     position: relative;
-    min-height: 500px;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 0;
   }
   
   .hero-image {
@@ -163,12 +186,24 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
   .hero-intro {
     font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   
   .featured-section {
     background-color: #f9f9f9;
+  }
+  
+  .featured-section-alt {
+    background-color: #fff;
+    padding: 4rem 0;
   }
   
   .featured-content {
@@ -196,20 +231,12 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
   }
   
   .featured-text p {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     line-height: 1.8;
   }
   
-  .paintings-content {
-    text-align: center;
-  }
-  
-  .paintings-content img {
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  .featured-text p:last-of-type {
+    margin-bottom: 2rem;
   }
   
   .contact-section {
@@ -222,7 +249,17 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
     }
     
     .hero {
-      min-height: 400px;
+      min-height: 100vh;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .hero-buttons .btn {
+      width: 100%;
+      max-width: 300px;
     }
   }
 </style>
