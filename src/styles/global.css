@@ -10,6 +10,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -19,6 +20,7 @@ body {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -327,7 +329,7 @@ img[loading="lazy"] {
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 1rem;
+    padding: 0 4rem;
   }
 
   .btn {
