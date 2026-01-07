@@ -7,6 +7,7 @@ const navItems = [
   { href: '/paintings', label: 'Paintings' },
   { href: '/about', label: "Artist's Statement" },
 ];
+import CartIcon from './CartIcon.astro';
 ---
 
 <nav class="main-nav">
@@ -15,10 +16,6 @@ const navItems = [
       <a href="/" class="nav-logo">
         <span class="logo-text">Bonnie Bostrom</span>
       </a>
-      
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="hamburger"></span>
-      </button>
       
       <ul class="nav-menu">
         {navItems.map(({ href, label }) => (
@@ -33,6 +30,13 @@ const navItems = [
           </li>
         ))}
       </ul>
+
+      <div class="nav-extras">
+         <CartIcon />
+         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+           <span class="hamburger"></span>
+         </button>
+      </div>
     </div>
   </div>
 </nav>
@@ -64,6 +68,12 @@ const navItems = [
   
   .nav-logo:hover {
     color: #fff;
+  }
+
+  .nav-extras {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
   
   .nav-toggle {

@@ -1,0 +1,68 @@
+[
+    {
+        "id": "illumination",
+        "name": "Illumination",
+        "price": 15.00,
+        "currency": "USD"
+    },
+    {
+        "id": "casting-shadows",
+        "name": "Casting Shadows",
+        "price": 22.00,
+        "currency": "USD"
+    },
+    {
+        "id": "laying-stone",
+        "name": "Laying Stone",
+        "price": 20.00,
+        "currency": "USD"
+    },
+    {
+        "id": "duet",
+        "name": "Duet",
+        "price": 20.00,
+        "currency": "USD"
+    },
+    {
+        "id": "love-always-love",
+        "name": "Love, Always Love",
+        "price": 15.00,
+        "currency": "USD"
+    },
+    {
+        "id": "born-crazy",
+        "name": "Born Crazy",
+        "price": 25.00,
+        "currency": "USD"
+    },
+    {
+        "id": "the-way-showers",
+        "name": "The way Showers",
+        "price": 15.00,
+        "currency": "USD"
+    },
+    {
+        "id": "quicksilver-dreams",
+        "name": "Quicksilver Dreams",
+        "price": 15.00,
+        "currency": "USD"
+    },
+    {
+        "id": "image-and-word",
+        "name": "Image and Word: A Dialectic",
+        "price": 25.00,
+        "currency": "USD"
+    },
+    {
+        "id": "buddha-nature-sw",
+        "name": "Buddha Nature of the Southwest",
+        "price": 15.00,
+        "currency": "USD"
+    },
+    {
+        "id": "women-facing-retirement",
+        "name": "Women Facing Retirement: A Time for Self-Reflection",
+        "price": 15.00,
+        "currency": "USD"
+    }
+]

@@ -74,14 +74,13 @@ const sortedBooks = allBooks.sort((a, b) => a.data.order - b.data.order);
                 <h2>{book.data.title}</h2>
                 <p class="book-description">{book.data.description}</p>
                 <p class="book-price">$25.00</p>
-                <a 
-                  href={book.data.buyUrl || "https://buy.stripe.com/test_placeholder"} 
-                  class="btn btn-primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <p class="book-price">$25.00</p>
+                <button 
+                  class="btn btn-primary add-to-cart-btn"
+                  data-id={book.data.slug}
                 >
-                  Buy Now
-                </a>
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
@@ -92,6 +91,23 @@ const sortedBooks = allBooks.sort((a, b) => a.data.order - b.data.order);
 
   <Footer />
 </BaseLayout>
+
+<script>
+  import { cart } from '../lib/cart';
+  
+  const buttons = document.querySelectorAll('.add-to-cart-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      // @ts-ignore
+      const id = e.currentTarget.dataset.id;
+      if (id) {
+        cart.addToCart(id);
+        // Open drawer on add
+        window.dispatchEvent(new CustomEvent('cart:toggle'));
+      }
+    });
+  });
+</script>
 
 <style>
   .hero {

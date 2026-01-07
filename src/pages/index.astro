@@ -95,14 +95,12 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
               <h3>{featuredBook.data.title}</h3>
               <p>{featuredBook.data.description}</p>
               {featuredBook.data.buyUrl && (
-                <a 
-                  href={featuredBook.data.buyUrl} 
-                  class="btn btn-primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button 
+                  class="btn btn-primary add-to-cart-btn"
+                  data-id={featuredBook.data.slug}
                 >
-                  Buy Now for $25
-                </a>
+                  Add to Cart - $25
+                </button>
               )}
             </div>
           </div>
@@ -189,6 +187,22 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
 
   <Footer />
 </BaseLayout>
+
+<script>
+  import { cart } from '../lib/cart';
+  
+  const buttons = document.querySelectorAll('.add-to-cart-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      // @ts-ignore
+      const id = e.currentTarget.dataset.id;
+      if (id) {
+        cart.addToCart(id);
+        window.dispatchEvent(new CustomEvent('cart:toggle'));
+      }
+    });
+  });
+</script>
 
 <style>
   .hero {
