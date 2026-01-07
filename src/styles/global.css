@@ -134,7 +134,7 @@ img {
 }
 
 .btn-secondary {
-  background-color: transparent;
+  background-color: #fff;
   color: #40e0d0;
   border: 2px solid #40e0d0;
 }
@@ -222,6 +222,69 @@ textarea {
   margin-bottom: 0.5rem;
   color: #662b5c;
 }
+
+/* Book-specific card backgrounds (extracted from upper-left pixel of each cover) */
+.card:nth-child(1) .card-image {
+  background-color: #28222e;
+}
+
+/* born-crazy */
+.card:nth-child(2) .card-image {
+  background-color: #dc653b;
+}
+
+/* quicksilver-dreams */
+.card:nth-child(3) .card-image {
+  background-color: #a3a98d;
+}
+
+/* the-way-showers */
+.card:nth-child(4) .card-image {
+  background-color: #44372e;
+}
+
+/* duet */
+.card:nth-child(5) .card-image {
+  background-color: #bec2cd;
+}
+
+/* love-always-love */
+.card:nth-child(6) .card-image {
+  background-color: #bbafa3;
+}
+
+/* laying-stone */
+.card:nth-child(7) .card-image {
+  background-color: #bf3e38;
+}
+
+/* image-and-word */
+.card:nth-child(8) .card-image {
+  background-color: #24265f;
+}
+
+/* buddha-nature */
+.card:nth-child(9) .card-image {
+  background-color: #8d856e;
+}
+
+/* uncommon-constants */
+.card:nth-child(10) .card-image {
+  background-color: #c4ac86;
+}
+
+/* women-facing-retirement */
+.card:nth-child(11) .card-image {
+  background-color: #b8b8ac;
+}
+
+/* illumination */
+.card:nth-child(12) .card-image {
+  background-color: #d1c5ad;
+}
+
+/* casting-shadows */
+
 
 /* Lazy Loading - Images visible by default */
 img[loading="lazy"] {
