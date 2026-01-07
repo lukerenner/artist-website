@@ -81,6 +81,7 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
                      <p><strong>Dimensions:</strong> {painting.data.dimensions}</p>
                   </div>
                   <p class="description">{painting.data.description}</p>
+                  <a href="#contact" class="btn btn-primary inquire-btn">Inquire About this Painting</a>
                 </div>
               </div>
             </div>
@@ -95,8 +96,8 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
 </BaseLayout>
 
 <style>
-  /* Reuse hero styles roughly from books */
-  .hero {
+    /* Hero - Matching books.astro */
+    .hero {
     position: relative;
     min-height: 400px;
     display: flex;
@@ -123,7 +124,7 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
   }
   
@@ -131,7 +132,7 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(2px);
+    filter: brightness(0.6) blur(2px); /* Matches books.astro */
   }
   
   .hero-content {
@@ -152,43 +153,35 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   }
 
-  .section-title {
-    text-align: center;
-    color: #662b5c;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-  }
-
-  /* Quick Links - Same as books */
+  /* Quick Links - Matching books.astro */
   .quick-links-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    margin-bottom: 4rem;
     max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    margin-bottom: 4rem;
   }
   
   .quick-links-column {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
   
   .quick-link {
-    color: #333;
+    color: #662b5c; /* Matching books color */
     text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    text-align: center;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0; /* Matching books styling */
+    transition: color 0.3s ease;
   }
   
   .quick-link:hover {
-    background-color: #f0f0f0;
     color: #40e0d0;
-    transform: translateX(5px);
+    background-color: transparent; /* Remove painting specific hover bg */
+    transform: none; /* Remove transform */
   }
 
   .divider {
@@ -200,7 +193,15 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
   /* Painting Details */
   .painting-item {
     margin-bottom: 6rem;
-    padding-top: 2rem; /* Offset for anchor links */
+    padding-top: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 6rem;
+  }
+  
+  .painting-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
   
   .painting-detail-grid {
@@ -238,7 +239,8 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
     font-size: 1.1rem;
     line-height: 1.8;
     color: #333;
-    white-space: pre-wrap; /* Preserve paragraphs if any */
+    white-space: pre-wrap;
+    margin-bottom: 2rem;
   }
 
   @media (max-width: 768px) {
@@ -246,9 +248,4 @@ const pageTitle = "Original Paintings | Bonnie Bostrom";
       grid-template-columns: 1fr;
       gap: 2rem;
     }
-    
-    .hero-image img {
-       /* Less blur on mobile maybe? or same */
-    }
   }
-</style>
