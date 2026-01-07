@@ -4,9 +4,8 @@ const currentPath = Astro.url.pathname;
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/books', label: 'Published Works' },
-  { href: '/canvas-art-for-sale', label: 'Canvas Art for Sale' },
+  { href: '/paintings', label: 'Paintings' },
   { href: '/about', label: "Artist's Statement" },
-  { href: '/blog', label: 'Blog' },
 ];
 ---
 
@@ -134,13 +133,26 @@ const navItems = [
       top: 70px;
       left: 0;
       right: 0;
-      background-color: #000;
+      background-image: url('/images/nav-mobile-bg.jpg');
+      background-size: cover;
+      background-position: center;
       flex-direction: column;
       align-items: center;
       gap: 0;
       padding: 2rem 0;
       transform: translateX(100%);
       transition: transform 0.3s ease;
+    }
+    
+    .nav-menu::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: -1;
     }
     
     .nav-menu.active {
