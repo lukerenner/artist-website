@@ -128,7 +128,9 @@ img {
 }
 
 .btn-primary:hover {
-  background-color: #2ab3a5;
+  background-color: #fff;
+  color: #40e0d0;
+  border: 2px solid #40e0d0;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
 }
@@ -275,12 +277,12 @@ textarea {
 
 /* women-facing-retirement */
 .card:nth-child(11) .card-image {
-  background-color: #b8b8ac;
+  background-color: #020200;
 }
 
 /* illumination */
 .card:nth-child(12) .card-image {
-  background-color: #d1c5ad;
+  background-color: #40413c;
 }
 
 /* casting-shadows */
