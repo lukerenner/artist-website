@@ -283,6 +283,19 @@ textarea {
 }
 
 /* casting-shadows */
+.card:nth-child(12) .card-image {
+  background-color: #40413c;
+}
+
+/* the-witnesses-project */
+.card:nth-child(13) .card-image {
+  background-color: #dacfb8;
+}
+
+/* ecstasy */
+.card:nth-child(14) .card-image {
+  background-color: #5a677a;
+}
 
 
 /* Lazy Loading - Images visible by default */

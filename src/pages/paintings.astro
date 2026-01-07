@@ -6,9 +6,17 @@ import { getCollection } from 'astro:content';
 
 const allPaintings = await getCollection('paintings');
 const sortedPaintings = allPaintings.sort((a, b) => a.data.order - b.data.order);
+
+// Helper for quick links columns
+const third = Math.ceil(sortedPaintings.length / 3);
+const col1 = sortedPaintings.slice(0, third);
+const col2 = sortedPaintings.slice(third, third * 2);
+const col3 = sortedPaintings.slice(third * 2);
+
+const pageTitle = "Original Paintings | Bonnie Bostrom";
 ---
 
-<BaseLayout title="Original Paintings - Bonnie Bostrom" description="Original acrylic paintings and fine art by Bonnie Bostrom.">
+<BaseLayout title={pageTitle} description="Original acrylic paintings by Bonnie Bostrom.">
   <Nav />
   
   <main>
@@ -29,35 +37,56 @@ const sortedPaintings = allPaintings.sort((a, b) => a.data.order - b.data.order)
       </div>
     </section>
 
-    <!-- Paintings Grid -->
     <section class="section">
       <div class="container">
-        {sortedPaintings.length > 0 ? (
-          <div class="paintings-grid">
-            {sortedPaintings.map((painting) => (
-              <div class="painting-card">
-                <div class="painting-image-container">
+      
+        <!-- Quick Links -->
+        <h2 class="section-title">Jump to a Painting</h2>
+        <div class="quick-links-grid">
+          <div class="quick-links-column">
+            {col1.map((p) => (
+              <a href={`#${p.data.slug}`} class="quick-link">{p.data.title}</a>
+            ))}
+          </div>
+          <div class="quick-links-column">
+            {col2.map((p) => (
+              <a href={`#${p.data.slug}`} class="quick-link">{p.data.title}</a>
+            ))}
+          </div>
+          <div class="quick-links-column">
+             {col3.map((p) => (
+              <a href={`#${p.data.slug}`} class="quick-link">{p.data.title}</a>
+            ))}
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Paintings List -->
+        <div class="paintings-list">
+          {sortedPaintings.map((painting) => (
+            <div id={painting.data.slug} class="painting-item">
+              <div class="painting-detail-grid">
+                <div class="painting-image">
                   <img 
                     src={painting.data.image} 
                     alt={painting.data.title}
                     loading="lazy"
                   />
                 </div>
-                <div class="painting-info">
+                <div class="painting-content">
                   <h2>{painting.data.title}</h2>
-                  <p class="medium">{painting.data.medium}</p>
-                  <p class="dimensions">{painting.data.dimensions}</p>
+                  <div class="painting-meta">
+                     <p><strong>Medium:</strong> {painting.data.medium || "Acrylic on canvas"}</p>
+                     <p><strong>Dimensions:</strong> {painting.data.dimensions}</p>
+                  </div>
                   <p class="description">{painting.data.description}</p>
-                  {/* Placeholder for price/buy button if added later */}
                 </div>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div class="empty-state">
-            <p>New paintings coming soon. Please check back later.</p>
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
+        
       </div>
     </section>
   </main>
@@ -66,6 +95,7 @@ const sortedPaintings = allPaintings.sort((a, b) => a.data.order - b.data.order)
 </BaseLayout>
 
 <style>
+  /* Reuse hero styles roughly from books */
   .hero {
     position: relative;
     min-height: 400px;
@@ -93,7 +123,7 @@ const sortedPaintings = allPaintings.sort((a, b) => a.data.order - b.data.order)
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
     z-index: 1;
   }
   
@@ -101,7 +131,7 @@ const sortedPaintings = allPaintings.sort((a, b) => a.data.order - b.data.order)
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.6) blur(2px);
+    filter: blur(2px);
   }
   
   .hero-content {
@@ -114,77 +144,111 @@ const sortedPaintings = allPaintings.sort((a, b) => a.data.order - b.data.order)
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
-
+  
   .hero-intro {
     font-size: 1.25rem;
     max-width: 600px;
     margin: 0 auto;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   }
-  
-  .paintings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 3rem;
-  }
-  
-  .painting-card {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .painting-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .painting-image-container {
-    width: 100%;
-    aspect-ratio: 1; /* Square aspect ratio for grid uniformity */
-    overflow: hidden;
-    background-color: #f0f0f0;
-  }
-  
-  .painting-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Fill the square */
-    transition: transform 0.5s ease;
-  }
-  
-  .painting-card:hover .painting-image-container img {
-    transform: scale(1.05);
-  }
-  
-  .painting-info {
-    padding: 1.5rem;
-  }
-  
-  .painting-info h2 {
+
+  .section-title {
+    text-align: center;
     color: #662b5c;
-    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+
+  /* Quick Links - Same as books */
+  .quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .quick-links-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .quick-link {
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+  
+  .quick-link:hover {
+    background-color: #f0f0f0;
+    color: #40e0d0;
+    transform: translateX(5px);
+  }
+
+  .divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 4rem 0;
+  }
+
+  /* Painting Details */
+  .painting-item {
+    margin-bottom: 6rem;
+    padding-top: 2rem; /* Offset for anchor links */
+  }
+  
+  .painting-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .painting-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .painting-content h2 {
+    color: #662b5c;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .painting-meta {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .painting-meta p {
     margin-bottom: 0.5rem;
   }
   
-  .medium, .dimensions {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-    font-style: italic;
-  }
-  
   .description {
-    margin-top: 1rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.8;
     color: #333;
+    white-space: pre-wrap; /* Preserve paragraphs if any */
   }
-  
-  .empty-state {
-    text-align: center;
-    padding: 4rem 1rem;
-    font-size: 1.2rem;
-    color: #666;
+
+  @media (max-width: 768px) {
+    .painting-detail-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .hero-image img {
+       /* Less blur on mobile maybe? or same */
+    }
   }
 </style>
