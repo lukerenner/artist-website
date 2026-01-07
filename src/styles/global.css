@@ -128,8 +128,9 @@ img {
 }
 
 .btn-primary:hover {
+  background-color: #2ab3a5;
+  /* Darker shade of #40e0d0 */
   color: #fff;
-  filter: brightness(0.75);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
 }
