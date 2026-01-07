@@ -26,6 +26,23 @@ const featuredBook = sortedBooks.find(book => book.data.featured);
 
 const allPaintings = await getCollection('paintings');
 const featuredPainting = allPaintings[0]; // Just show first painting as preview
+// Book background colors
+const bookColors = {
+  'born-crazy': '#28222e',
+  'quicksilver-dreams': '#dc653b',
+  'the-way-showers': '#a3a98d',
+  'duet': '#bec2cd',
+  'love-always-love': '#bbafa3',
+  'laying-stone': '#bf3e38',
+  'image-and-word': '#24265f',
+  'buddha-nature': '#8d856e',
+  'uncommon-constants': '#c4ac86',
+  'women-facing-retirement': '#020200',
+  'illumination': '#40413c',
+  'casting-shadows': '#40413c',
+  'the-witnesses-project': '#dacfb8',
+  'ecstasy': '#5a677a'
+};
 ---
 
 <BaseLayout>
@@ -59,12 +76,13 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
         <h2 class="section-title">Books By Bonnie</h2>
         <div class="grid grid-3">
           {sortedBooks.map((book) => (
-            <a href={`/books#${book.slug}`} class="card-link">
+            <a href={`/books#${book.data.slug}`} class="card-link">
               <div class="card">
                 <img 
                   src={book.data.coverImage} 
                   alt={book.data.title}
                   class="card-image"
+                  style={`background-color: ${bookColors[book.data.slug] || '#f4f4f4'}`}
                   loading="lazy"
                 />
                 <div class="card-content">
