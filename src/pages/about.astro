@@ -14,33 +14,38 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
     <header class="about-header">
       <div class="header-bg">
         <img src="/images/about/about-hero.webp" alt="Background" loading="eager" />
+        <div class="header-overlay"></div>
+      </div>
+      <div class="header-content container">
+        <h1 class="page-title">Artist's Statement</h1>
       </div>
     </header>
 
-    <!-- 2-5: Initial Grid Section -->
-    <section class="section about-intro">
+    <!-- 2. Section 1: Text + Portrait 1 -->
+    <section class="section about-intro first-intro">
       <div class="container container-wide">
-        <div class="intro-grid">
-          <!-- Left Column -->
-          <div class="intro-col-left">
-             <div class="intro-text-block">
-                <h1>Many times I have been encouraged to choose one particular avenue of creativity and concentrate my efforts there.</h1>
-             </div>
-             <div class="intro-image-1">
-               <img src="/images/about/bonnie-portrait-1.webp" alt="Bonnie Bostrom Portrait 1" />
-             </div>
+        <div class="intro-block">
+          <div class="intro-text-block">
+             <h1 class="big-h1">Many times I have been encouraged to choose one particular avenue of creativity and concentrate my efforts there.</h1>
           </div>
-          
-          <!-- Right Column -->
-          <div class="intro-col-right">
-            <div class="intro-image-2">
-               <img src="/images/about/bonnie-portrait-2.webp" alt="Bonnie Bostrom Portrait 2" />
-            </div>
-            <div class="intro-text-block right-aligned">
-               <h1>The thinking behind that advice was that I needed to devote myself to one endeavor so that I might become successful.</h1>
-            </div>
+          <div class="intro-image">
+             <img src="/images/about/bonnie-portrait-1.webp" alt="Bonnie Bostrom Portrait 1" />
           </div>
         </div>
+      </div>
+    </section>
+    
+    <!-- 3. Section 2: Portrait 2 + Text (Stacked Below) -->
+    <section class="section about-intro second-intro">
+      <div class="container container-wide">
+         <div class="intro-block reverse-layout">
+            <div class="intro-image">
+               <img src="/images/about/bonnie-portrait-2.webp" alt="Bonnie Bostrom Portrait 2" />
+            </div>
+            <div class="intro-text-block right-aligned-desktop">
+               <h1 class="big-h1">The thinking behind that advice was that I needed to devote myself to one endeavor so that I might become successful.</h1>
+            </div>
+         </div>
       </div>
     </section>
 
@@ -48,6 +53,7 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
     <section class="section statement-break">
       <div class="break-bg">
          <img src="/images/about/green-wash-bg.webp" alt="Green Wash Background" />
+         <div class="green-overlay"></div>
       </div>
       <div class="break-content container">
         <h1 class="all-caps-centered">
@@ -62,7 +68,7 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
     <!-- 7-9. Writer Section -->
     <section class="section writer-section">
       <div class="container container-narrow">
-        <p class="lead-text">I am not torn between writing, composing, and painting. I find that I need several outlets.</p>
+        <p class="lead-text left-align">I am not torn between writing, composing, and painting. I find that I need several outlets.</p>
         
         <h2 class="subhead">I have always been a writer.</h2>
         
@@ -85,7 +91,7 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
          
          <div class="text-content">
             <p>The guitar was so much fun, I decided to try my hand at the piano and love it. If I get bored with writing, I play the piano or write a song.</p>
-            <p>A friend, the musician <a href="https://example.com" target="_blank">3 HAND STEPHEN</a>, has recorded his arrangement of one of my songs, Atomic Clock, and I am writing more lyrics for him.</p>
+            <p>A friend, the musician 3 HAND STEPHEN, has recorded his arrangement of one of my songs, Atomic Clock, and I am writing more lyrics for him.</p>
             <p>Ten years ago, my sister, Jeanne Collins, suggested I try painting.</p>
          </div>
        </div>
@@ -95,6 +101,7 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
     <section class="section statement-break">
       <div class="break-bg">
          <img src="/images/about/green-wash-bg.webp" alt="Green Wash Background" />
+         <div class="green-overlay"></div>
       </div>
       <div class="break-content container">
         <h1 class="mid-caps-centered">
@@ -146,8 +153,11 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
 <style>
   /* 1. Header */
   .about-header {
-    height: 400px; /* Adjust as needed */
+    height: 400px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
   }
   
@@ -159,60 +169,83 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
     height: 100%;
   }
   
-  .header-bg img {
+  .header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+  }
+  
+  .header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  
+  .page-title {
+    font-size: clamp(3rem, 6vw, 4.5rem); 
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin: 0;
+    font-weight: 700;
   }
 
   /* Shared Container Widths */
   .container-wide {
-    max-width: 1200px;
+    max-width: 1000px; /* Reduced slightly for better read on stacking */
+    margin: 0 auto;
   }
   
   .container-narrow {
     max-width: 800px;
   }
 
-  /* 2-5 Intro Grid */
+  /* 2-3 Intro Sections */
   .about-intro {
-    padding: 4rem 0;
+    padding: 2rem 0;
   }
   
-  .intro-grid {
+  .first-intro {
+     padding-top: 4rem;
+  }
+  
+  .intro-block {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: center; /* Vertically center image and text */
   }
   
-  .intro-text-block h1 {
-    font-size: 2rem;
-    line-height: 1.4;
-    color: #662b5c; /* Using site brand color */
+  .big-h1 {
+    font-size: clamp(2rem, 4vw, 3rem); /* Matches visual weight of Artist Statement roughly */
+    line-height: 1.2;
+    color: #662b5c;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin: 0;
   }
   
-  .right-aligned {
+  .right-aligned-desktop {
     text-align: right;
-    margin-top: 2rem;
   }
   
-  .intro-image-1 img, 
-  .intro-image-2 img {
+  .intro-image img {
     width: 100%;
     border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    /* Removed box-shadow per request */
   }
   
-  /* 6 & 13 Break Sections */
+  /* 6 & 13 Break Sections (Green Wash) */
   .statement-break {
     position: relative;
-    padding: 6rem 1rem;
+    padding: 10rem 1rem; /* Increased padding for height/"breath" */
     text-align: center;
     color: #fff;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .break-bg {
@@ -228,7 +261,20 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* opacity: 0.9; Optional if image needs darkening */ 
+  }
+  
+  .green-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 100, 0, 0.4); /* Transparent green layer */
+  }
+  
+  .break-content {
+    position: relative;
+    z-index: 2;
   }
   
   .all-caps-centered {
@@ -251,9 +297,12 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
   /* Text Sections */
   .lead-text {
     font-size: 1.5rem;
-    text-align: center;
     margin-bottom: 2rem;
     color: #333;
+  }
+  
+  .left-align {
+    text-align: left;
   }
   
   .subhead {
@@ -275,6 +324,7 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
     width: 100%;
     height: auto;
     display: block;
+    /* Removed box-shadow */
   }
 
   /* 15 Closing Section */
@@ -293,7 +343,7 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
   
   .closing-col-left img {
     width: 100%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    /* Removed box-shadow */
   }
   
   .closing-col-right h2 {
@@ -318,17 +368,31 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
   .signature-block img {
     width: 100%;
     display: block;
+    /* Removed box-shadow */
   }
 
   /* Responsive */
   @media (max-width: 768px) {
-    .intro-grid, 
+    .intro-block, 
     .closing-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
     
-    .right-aligned {
+    /* Ensure image is on top for both blocks if desired, or keep source order */
+    /* Source order: 
+       Block 1: Text, Image. Mobile usually wants Image, Text? 
+       User didn't specify, but standard is usually Image first. 
+       Currently: 
+       Block 1: Text then Image.
+       Block 2: Image then Text.
+       
+       Let's use Flexbox ordering to ensure consistency if needed, 
+       but "Right align... on mobile" instruction implies text block flow.
+    */
+
+    /* User Request: "Left align 'The thinking behind...' on mobile" */
+    .right-aligned-desktop {
       text-align: left;
     }
     
@@ -336,10 +400,8 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
       height: 300px;
     }
     
-    .intro-col-left, .intro-col-right {
-        display: flex;
-        flex-direction: column;
+    .page-title {
+        font-size: 2.5rem;
     }
-    /* Reorder mobile if needed, though default stacking usually OK */
   }
 </style>
