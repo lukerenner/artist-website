@@ -1,70 +1,131 @@
 ---
 // Footer component with contact section and copyright
+import ContactForm from './ContactForm.astro';
 ---
 
-<footer class="main-footer" data-astro-cid-sz7xmlte>
-  <div class="footer-quote" data-astro-cid-sz7xmlte>
-    <div class="container" data-astro-cid-sz7xmlte>
-      <p data-astro-cid-sz7xmlte>
+<footer class="main-footer">
+  <!-- Contact Section -->
+  <section class="section contact-section">
+    <div class="container">
+      <h2 class="section-title contact-title">We are all part of a global community. Connect with Bonnie or inquire about purchasing a painting by sending her a message below.</h2>
+      <div class="contact-grid">
+        <div class="contact-image">
+          <img 
+            src="/images/about/contact-footer.jpg" 
+            alt="Bonnie Bostrom"
+            loading="lazy"
+          />
+        </div>
+        <div class="contact-form-wrapper">
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-quote">
+    <div class="container">
+      <p>
         We create for others so they can share what is really a very personal missive to ourselves. The events in our lives are unique and those that cause hunger, pain, grief, and suffering bind us. Beauty, love, and compassion, however, are even stronger bonds.
       </p>
-      <p class="credit" data-astro-cid-sz7xmlte>
-        Created with love by <a href="https://lukerenner.co" target="_blank" rel="noopener noreferrer" data-astro-cid-sz7xmlte>Luke Renner</a>.
+      <p class="credit">
+        Created with love by <a href="https://lukerenner.co" target="_blank" rel="noopener noreferrer">Luke Renner</a>.
       </p>
     </div>
   </div>
-  <div class="copyright" data-astro-cid-sz7xmlte>
-    <p data-astro-cid-sz7xmlte>Copyright © 2019 Bonnie Bostrom | All rights reserved.</p>
+  <div class="copyright">
+    <p>Copyright © 2019 Bonnie Bostrom | All rights reserved.</p>
   </div>
 </footer>
 
 <style>
-  .main-footer[data-astro-cid-sz7xmlte] {
+  .main-footer {
     background-color: #000;
     color: #fff;
     margin-top: 0;
     border-top: none;
   }
   
-  .footer-quote[data-astro-cid-sz7xmlte] {
-    padding: 3rem 0 1rem;
+  /* Contact Section Styles - Migrated from index.astro */
+  .contact-section {
+    background-color: #f5f5f5; /* Keep light background for contrast above black footer */
+    color: #333; /* Dark text for light background */
+    padding: 4rem 0;
   }
   
-  .footer-quote[data-astro-cid-sz7xmlte] p[data-astro-cid-sz7xmlte] {
+  .contact-title {
+    font-size: 1.75rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+    text-align: center;
+    color: #333;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .contact-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer Quote Styles */
+  .footer-quote {
+    padding: 3rem 0 1rem;
+    background-color: #000; /* Ensure black background */
+  }
+  
+  .footer-quote p {
     text-align: center;
     font-size: 1.1rem;
     line-height: 1.8;
     max-width: 900px;
     margin: 0 auto 1rem;
     font-style: italic;
+    color: #fff;
   }
   
-  .credit[data-astro-cid-sz7xmlte] {
+  .credit {
     font-style: normal !important;
     font-size: 1rem !important;
     margin-top: 1.5rem !important;
     margin-bottom: 0.5rem !important;
   }
   
-  .credit[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte] {
+  .credit a {
     color: #40e0d0;
     text-decoration: none;
     transition: color 0.3s ease;
   }
   
-  .credit[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover {
+  .credit a:hover {
     color: #2ab3a5;
     text-decoration: underline;
   }
   
-  .copyright[data-astro-cid-sz7xmlte] {
+  .copyright {
     padding: 0.5rem 0 1.5rem;
     text-align: center;
+    background-color: #000;
   }
   
-  .copyright[data-astro-cid-sz7xmlte] p[data-astro-cid-sz7xmlte] {
+  .copyright p {
     color: #999;
     font-size: 0.9rem;
     margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
