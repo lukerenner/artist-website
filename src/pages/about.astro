@@ -21,29 +21,39 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
       </div>
     </header>
 
-    <!-- 2. Section 1: Text + Portrait 1 -->
+    <!-- 2. Section 1: Text + Portrait 1 (Left Column Only) -->
     <section class="section about-intro first-intro">
       <div class="container container-wide">
-        <div class="intro-block">
-          <div class="intro-text-block">
-             <h1 class="big-h1">Many times I have been encouraged to choose one particular avenue of creativity and concentrate my efforts there.</h1>
+        <div class="intro-grid">
+          <div class="intro-col-content">
+             <div class="intro-text-block">
+                <h1 class="big-h1">Many times I have been encouraged to choose one particular avenue of creativity and concentrate my efforts there.</h1>
+             </div>
+             <div class="intro-image spacer-top">
+                <img src="/images/about/bonnie-portrait-1.webp" alt="Bonnie Bostrom Portrait 1" />
+             </div>
           </div>
-          <div class="intro-image">
-             <img src="/images/about/bonnie-portrait-1.webp" alt="Bonnie Bostrom Portrait 1" />
+          <div class="intro-col-empty">
+            <!-- Empty Right Column -->
           </div>
         </div>
       </div>
     </section>
     
-    <!-- 3. Section 2: Portrait 2 + Text (Stacked Below) -->
+    <!-- 3. Section 2: Portrait 2 + Text (Right Column Only) -->
     <section class="section about-intro second-intro">
       <div class="container container-wide">
-         <div class="intro-block reverse-layout">
-            <div class="intro-image">
-               <img src="/images/about/bonnie-portrait-2.webp" alt="Bonnie Bostrom Portrait 2" />
+         <div class="intro-grid">
+            <div class="intro-col-empty">
+              <!-- Empty Left Column -->
             </div>
-            <div class="intro-text-block right-aligned-desktop">
-               <h1 class="big-h1">The thinking behind that advice was that I needed to devote myself to one endeavor so that I might become successful.</h1>
+            <div class="intro-col-content">
+               <div class="intro-image">
+                  <img src="/images/about/bonnie-portrait-2.webp" alt="Bonnie Bostrom Portrait 2" />
+               </div>
+               <div class="intro-text-block spacer-top right-aligned-desktop">
+                  <h1 class="big-h1">The thinking behind that advice was that I needed to devote myself to one endeavor so that I might become successful.</h1>
+               </div>
             </div>
          </div>
       </div>
@@ -194,8 +204,9 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
 
   /* Shared Container Widths */
   .container-wide {
-    max-width: 1000px; /* Reduced slightly for better read on stacking */
+    max-width: 1200px; /* Restored to wider to allow empty cols to work well */
     margin: 0 auto;
+    padding: 0 1.5rem;
   }
   
   .container-narrow {
@@ -211,15 +222,23 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
      padding-top: 4rem;
   }
   
-  .intro-block {
+  .intro-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: center; /* Vertically center image and text */
   }
   
+  .intro-col-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .spacer-top {
+    margin-top: 2rem;
+  }
+
   .big-h1 {
-    font-size: clamp(2rem, 4vw, 3rem); /* Matches visual weight of Artist Statement roughly */
+    font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.2;
     color: #662b5c;
     font-weight: 700;
@@ -233,7 +252,6 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
   .intro-image img {
     width: 100%;
     border-radius: 4px;
-    /* Removed box-shadow per request */
   }
   
   /* 6 & 13 Break Sections (Green Wash) */
@@ -373,23 +391,17 @@ const pageTitle = "About Bonnie Bostrom | Artist Statement";
 
   /* Responsive */
   @media (max-width: 768px) {
-    .intro-block, 
+    .intro-grid, 
     .closing-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
     
-    /* Ensure image is on top for both blocks if desired, or keep source order */
-    /* Source order: 
-       Block 1: Text, Image. Mobile usually wants Image, Text? 
-       User didn't specify, but standard is usually Image first. 
-       Currently: 
-       Block 1: Text then Image.
-       Block 2: Image then Text.
-       
-       Let's use Flexbox ordering to ensure consistency if needed, 
-       but "Right align... on mobile" instruction implies text block flow.
-    */
+    /* Hide empty columns on mobile if they take up space, 
+       but with 1fr they just stack. We want content to take full width. */
+    .intro-col-empty {
+      display: none;
+    }
 
     /* User Request: "Left align 'The thinking behind...' on mobile" */
     .right-aligned-desktop {
