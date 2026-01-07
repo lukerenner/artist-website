@@ -12,8 +12,8 @@ const allBooks = await getCollection('books');
 const prioritySlugs = ['born-crazy', 'the-witnesses-project', 'ecstasy', 'illumination'];
 
 const sortedBooks = allBooks.sort((a, b) => {
-  const indexA = prioritySlugs.indexOf(a.slug);
-  const indexB = prioritySlugs.indexOf(b.slug);
+  const indexA = prioritySlugs.indexOf(a.data.slug);
+  const indexB = prioritySlugs.indexOf(b.data.slug);
 
   if (indexA !== -1 && indexB !== -1) return indexA - indexB;
   if (indexA !== -1) return -1;
