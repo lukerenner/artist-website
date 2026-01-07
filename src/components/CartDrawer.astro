@@ -49,6 +49,11 @@ import products from '../data/products.json';
     visibility: visible;
   }
 
+  /* Force inheritance for form elements which usually track system fonts */
+  button, input, select, textarea {
+    font-family: inherit;
+  }
+
   .cart-drawer {
     position: fixed;
     top: 0;
@@ -84,6 +89,7 @@ import products from '../data/products.json';
     font-weight: 700;
     font-size: 1.5rem;
     color: #662b5c;
+    line-height: 1.2;
   }
 
   .close-btn {
@@ -136,11 +142,11 @@ import products from '../data/products.json';
   .item-name {
     font-family: 'Halant', serif;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 0.25rem;
     display: block;
     color: #333;
-    line-height: 1.3;
+    line-height: 1.2;
   }
 
   .item-price {
