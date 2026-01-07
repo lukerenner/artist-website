@@ -6,5 +6,6 @@
     "description": "This book contains the voices of several very fine poets. They tell of where they are, what they choose to highlight in our consciousness as witnesses to our current lives. You will enjoy it!",
     "order": 13,
     "featured": false,
-    "price": 10.00
+    "price": 10.0,
+    "color": "#dacfb8"
 }

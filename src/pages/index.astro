@@ -26,23 +26,7 @@ const featuredBook = sortedBooks.find(book => book.data.featured);
 
 const allPaintings = await getCollection('paintings');
 const featuredPainting = allPaintings[0]; // Just show first painting as preview
-// Book background colors
-const bookColors = {
-  'born-crazy': '#28222e',
-  'quicksilver-dreams': '#dc653b',
-  'the-way-showers': '#a3a98d',
-  'duet': '#46483d',
-  'love-always-love': '#bec2cd',
-  'laying-stone': '#bbafa3',
-  'image-and-word': '#bf3e38',
-  'buddha-nature': '#24265f',
-  'uncommon-constants': '#8d856e',
-  'women-facing-retirement': '#c4ac86',
-  'illumination': '#020200',
-  'casting-shadows': '#40413c',
-  'the-witnesses-project': '#dacfb8',
-  'ecstasy': '#5a677a'
-};
+// Book background colors now loaded from content/books/*.json
 ---
 
 <BaseLayout>
@@ -82,7 +66,7 @@ const bookColors = {
                   src={book.data.coverImage} 
                   alt={book.data.title}
                   class="card-image"
-                  style={`background-color: ${bookColors[book.data.slug] || '#f4f4f4'}`}
+                  style={`background-color: ${book.data.color || '#f4f4f4'}`}
                   loading="lazy"
                 />
                 <div class="card-content">

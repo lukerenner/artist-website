@@ -3,8 +3,9 @@
     "slug": "born-crazy",
     "coverImage": "/images/books/born-crazy.jpg",
     "blurb": "A memoir of resilience and self-discovery",
-    "description": "Part memoir, part poetry, part philosophy, part art gallery, this book defies description — and it's only available here at BonnieBostrom.com. Order your copy today.",
+    "description": "Part memoir, part poetry, part philosophy, part art gallery, this book defies description \u2014 and it's only available here at BonnieBostrom.com. Order your copy today.",
     "buyUrl": "https://buy.stripe.com/test_placeholder",
     "order": 1,
-    "featured": true
+    "featured": true,
+    "color": "#28222e"
 }

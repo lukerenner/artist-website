@@ -5,5 +5,6 @@
     "blurb": "Collaboration with visual artist Vytas Sakalas",
     "description": "Bonnie Bostrom and Vytas Sakalas are profound artists individually, but in collaboration, they are brilliant. Bonnie is our gracious host-eye, through which we view Vytas' work. Her lensing guides us in a dance of perception, spins us with tender grace into Vytas' luminous spheres. Her words make articulate worlds of them, and we are invited to inhabit and explore each one.",
     "order": 7,
-    "featured": false
+    "featured": false,
+    "color": "#bf3e38"
 }

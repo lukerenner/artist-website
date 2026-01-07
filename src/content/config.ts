@@ -11,6 +11,7 @@ const booksCollection = defineCollection({
         buyUrl: z.string().optional(),
         order: z.number(),
         featured: z.boolean(),
+        color: z.string().optional(),
     }),
 });
 
