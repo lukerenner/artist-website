@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
+import products from '../data/products.json';
 
 // Get all books sorted by order
 const allBooks = await getCollection('books');
@@ -60,31 +61,33 @@ const sortedBooks = allBooks.sort((a, b) => a.data.order - b.data.order);
     <!-- Books Section -->
     <section class="section books-section">
       <div class="container">
-        {sortedBooks.map((book, index) => (
-          <div id={book.data.slug} class="book-detail" class:list={[{ 'book-detail-alt': index % 2 === 1 }]}>
-            <div class="book-detail-grid">
-              <div class="book-detail-image">
-                <img 
-                  src={book.data.coverImage} 
-                  alt={book.data.title}
-                  loading="lazy"
-                />
-              </div>
-              <div class="book-detail-content">
-                <h2>{book.data.title}</h2>
-                <p class="book-description">{book.data.description}</p>
-                <p class="book-price">$25.00</p>
-                <p class="book-price">$25.00</p>
-                <button 
-                  class="btn btn-primary add-to-cart-btn"
-                  data-id={book.data.slug}
-                >
-                  Add to Cart
-                </button>
+        {sortedBooks.map((book, index) => {
+          const product = products.find(p => p.id === book.data.slug);
+          return (
+            <div id={book.data.slug} class="book-detail" class:list={[{ 'book-detail-alt': index % 2 === 1 }]}>
+              <div class="book-detail-grid">
+                <div class="book-detail-image">
+                  <img 
+                    src={book.data.coverImage} 
+                    alt={book.data.title}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="book-detail-content">
+                  <h2>{book.data.title}</h2>
+                  <p class="book-description">{book.data.description}</p>
+                  <p class="book-price">${product ? product.price.toFixed(2) : '0.00'}</p>
+                  <button 
+                    class="btn btn-primary add-to-cart-btn"
+                    data-id={book.data.slug}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   </main>
