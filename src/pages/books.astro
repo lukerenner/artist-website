@@ -33,21 +33,21 @@ const sortedBooks = allBooks.sort((a, b) => a.data.order - b.data.order);
         <h2 class="section-title">Jump to a Book</h2>
         <div class="quick-links-grid">
           <div class="quick-links-column">
-            {sortedBooks.slice(0, 4).map((book) => (
+            {sortedBooks.slice(0, 5).map((book) => (
               <a href={`#${book.data.slug}`} class="quick-link">
                 {book.data.title}
               </a>
             ))}
           </div>
           <div class="quick-links-column">
-            {sortedBooks.slice(4, 8).map((book) => (
+            {sortedBooks.slice(5, 10).map((book) => (
               <a href={`#${book.data.slug}`} class="quick-link">
                 {book.data.title}
               </a>
             ))}
           </div>
           <div class="quick-links-column">
-            {sortedBooks.slice(8, 12).map((book) => (
+            {sortedBooks.slice(10, 14).map((book) => (
               <a href={`#${book.data.slug}`} class="quick-link">
                 {book.data.title}
               </a>
