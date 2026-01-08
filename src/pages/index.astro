@@ -60,7 +60,7 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
         <h2 class="section-title">Books By Bonnie</h2>
         <div class="grid grid-3">
           {sortedBooks.map((book) => (
-            <a href={`/books#${book.data.slug}`} class="card-link">
+            <a href={`/books#${book.data.slug}`} class="card-link" data-book-slug={book.data.slug}>
               <div class="card">
                 <img 
                   src={book.data.coverImage} 
@@ -77,12 +77,15 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
             </a>
           ))}
         </div>
+        <div class="explore-all-books-container">
+          <a href="/books" class="btn btn-primary">Explore All Books</a>
+        </div>
       </div>
     </section>
 
     <!-- Featured: Born Crazy -->
     {featuredBook && (
-      <section class="section featured-section">
+      <section class="section featured-section featured-memoir-section">
         <div class="container">
           <div class="featured-content">
             <div class="featured-image">
@@ -317,7 +320,28 @@ const featuredPainting = allPaintings[0]; // Just show first painting as preview
     align-items: start;
   }
   
+  .explore-all-books-container {
+    display: none;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
   @media (max-width: 768px) {
+    /* Hide all books except Ecstasy on mobile */
+    .books-section .card-link:not([data-book-slug="ecstasy"]) {
+      display: none;
+    }
+    
+    /* Show the Explore All Books button on mobile */
+    .explore-all-books-container {
+      display: block;
+    }
+    
+    /* Hide the Born Crazy featured memoir section on mobile */
+    .featured-memoir-section {
+      display: none;
+    }
+    
     .featured-content {
       grid-template-columns: 1fr;
     }
