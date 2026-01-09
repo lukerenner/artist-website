@@ -2,11 +2,13 @@ import os
 from PIL import Image, ImageOps
 
 IMAGES_DIR = "public/images"
-FAVICON_SOURCE = "public/images/hero/bonnie-hero-alt.jpg" # Using hero alt as source
-OG_SOURCE = "public/images/hero/bonnie-hero-alt.jpg"
+FAVICON_SOURCE = "public/images/hero/bonnie-hero-alt.webp" # Using hero alt as source
+OG_SOURCE = "public/images/hero/bonnie-hero-alt.webp"
 
 def convert_to_webp(root_dir):
     print("Converting images to WebP...")
+    large_pngs = ['ecstasy.png', 'the-witnesses-project.png', 'piano-strip.png']
+    
     for root, dirs, files in os.walk(root_dir):
         for file in files:
             if file.lower().endswith(('.jpg', '.jpeg', '.png')):
@@ -14,15 +16,50 @@ def convert_to_webp(root_dir):
                 filename_no_ext = os.path.splitext(file_path)[0]
                 webp_path = f"{filename_no_ext}.webp"
                 
+                # Determine quality based on file size/type
+                quality = 90 if file in large_pngs else 85
+                
                 if not os.path.exists(webp_path):
                     try:
                         with Image.open(file_path) as img:
-                            img.save(webp_path, "WEBP", quality=85)
-                            print(f"Converted: {file} -> {os.path.basename(webp_path)}")
+                            img.save(webp_path, "WEBP", quality=quality, method=6)
+                            print(f"Converted: {file} -> {os.path.basename(webp_path)} (quality={quality})")
                     except Exception as e:
                         print(f"Error converting {file}: {e}")
                 else:
-                    print(f"Skipping (exists): {webp_path}")
+                    # Re-optimize large PNGs even if WebP exists
+                    if file in large_pngs:
+                        try:
+                            with Image.open(file_path) as img:
+                                img.save(webp_path, "WEBP", quality=quality, method=6)
+                                print(f"Re-optimized: {file} -> {os.path.basename(webp_path)} (quality={quality})")
+                        except Exception as e:
+                            print(f"Error re-optimizing {file}: {e}")
+                    else:
+                        print(f"Skipping (exists): {webp_path}")
+
+def cleanup_redundant_originals(root_dir):
+    """Remove JPG/PNG files that have WebP equivalents"""
+    print("\nCleaning up redundant original files...")
+    removed_count = 0
+    
+    for root, dirs, files in os.walk(root_dir):
+        for file in files:
+            if file.lower().endswith(('.jpg', '.jpeg', '.png')):
+                file_path = os.path.join(root, file)
+                filename_no_ext = os.path.splitext(file_path)[0]
+                webp_path = f"{filename_no_ext}.webp"
+                
+                # Only delete if WebP version exists
+                if os.path.exists(webp_path):
+                    try:
+                        os.remove(file_path)
+                        removed_count += 1
+                        print(f"Removed: {file}")
+                    except Exception as e:
+                        print(f"Error removing {file}: {e}")
+    
+    print(f"\nRemoved {removed_count} redundant original files.")
 
 def generate_og_image():
     print("Generating OG Image...")
@@ -94,5 +131,6 @@ def generate_favicons():
 
 if __name__ == "__main__":
     convert_to_webp(IMAGES_DIR)
+    cleanup_redundant_originals(IMAGES_DIR)
     generate_og_image()
     generate_favicons()
