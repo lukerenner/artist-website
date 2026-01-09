@@ -8,6 +8,7 @@ import products from '../data/products.json';
 // Get all books sorted by order
 const allBooks = await getCollection('books');
 const sortedBooks = allBooks.sort((a, b) => a.data.order - b.data.order);
+const alphabeticalBooks = [...allBooks].sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
 <BaseLayout title="Published Works - Bonnie Bostrom" description="Explore Bonnie Bostrom's collection of published works including poetry, memoirs, and collaborative art books.">
@@ -34,21 +35,21 @@ const sortedBooks = allBooks.sort((a, b) => a.data.order - b.data.order);
         <h2 class="section-title">Jump to a Book</h2>
         <div class="quick-links-grid">
           <div class="quick-links-column">
-            {sortedBooks.slice(0, 5).map((book) => (
+            {alphabeticalBooks.slice(0, 5).map((book) => (
               <a href={`#${book.data.slug}`} class="quick-link">
                 {book.data.title}
               </a>
             ))}
           </div>
           <div class="quick-links-column">
-            {sortedBooks.slice(5, 10).map((book) => (
+            {alphabeticalBooks.slice(5, 10).map((book) => (
               <a href={`#${book.data.slug}`} class="quick-link">
                 {book.data.title}
               </a>
             ))}
           </div>
           <div class="quick-links-column">
-            {sortedBooks.slice(10, 14).map((book) => (
+            {alphabeticalBooks.slice(10, 14).map((book) => (
               <a href={`#${book.data.slug}`} class="quick-link">
                 {book.data.title}
               </a>

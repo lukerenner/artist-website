@@ -6,12 +6,13 @@ import { getCollection } from 'astro:content';
 
 const allPaintings = await getCollection('paintings');
 const sortedPaintings = allPaintings.sort((a, b) => a.data.order - b.data.order);
+const alphabeticalPaintings = [...allPaintings].sort((a, b) => a.data.title.localeCompare(b.data.title));
 
 // Helper for quick links columns
-const third = Math.ceil(sortedPaintings.length / 3);
-const col1 = sortedPaintings.slice(0, third);
-const col2 = sortedPaintings.slice(third, third * 2);
-const col3 = sortedPaintings.slice(third * 2);
+const third = Math.ceil(alphabeticalPaintings.length / 3);
+const col1 = alphabeticalPaintings.slice(0, third);
+const col2 = alphabeticalPaintings.slice(third, third * 2);
+const col3 = alphabeticalPaintings.slice(third * 2);
 
 const pageTitle = "Original Paintings | Bonnie Bostrom";
 ---
